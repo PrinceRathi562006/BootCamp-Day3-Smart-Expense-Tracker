@@ -3,50 +3,42 @@ let expenses = [];
 
 // Function to add expense
 function addExpense() {
+  let category = document.getElementById("category").value;
 
-    let category = document.getElementById("category").value;
+  let amount = Number(document.getElementById("amount").value);
 
-    let amount = Number(document.getElementById("amount").value);
+  if (category === "" || amount <= 0) {
+    alert("Enter valid expense details.");
 
-    if (category === "" || amount <= 0) {
+    return;
+  }
 
-        alert("Enter valid expense details.");
+  // Object
+  let expense = {
+    category: category,
 
-        return;
-    }
+    amount: amount,
+  };
 
-    // Object
-    let expense = {
+  // Array
+  expenses.push(expense);
 
-        category: category,
+  displayExpenses();
 
-        amount: amount
+  document.getElementById("category").value = "";
 
-    };
-
-    // Array
-    expenses.push(expense);
-
-    displayExpenses();
-
-    document.getElementById("category").value = "";
-
-    document.getElementById("amount").value = "";
-
+  document.getElementById("amount").value = "";
 }
-
 
 // Function to display expenses
 function displayExpenses() {
+  let table = document.getElementById("expenseTable");
 
-    let table = document.getElementById("expenseTable");
+  table.innerHTML = "";
 
-    table.innerHTML = "";
-
-    // Loop
-    for (let i = 0; i < expenses.length; i++) {
-
-        table.innerHTML += `
+  // Loop
+  for (let i = 0; i < expenses.length; i++) {
+    table.innerHTML += `
 
         <tr>
 
@@ -57,71 +49,55 @@ function displayExpenses() {
         </tr>
 
         `;
-
-    }
-
+  }
 }
-
-
 
 // Function to calculate all values
 function calculateExpense() {
+  let income = Number(document.getElementById("income").value);
 
-    let income = Number(document.getElementById("income").value);
+  if (income <= 0) {
+    alert("Please enter income.");
 
-    if (income <= 0) {
+    return;
+  }
 
-        alert("Please enter income.");
+  let totalExpense = 0;
 
-        return;
+  let highestExpense = expenses[0];
 
+  // Loop through array
+  for (let expense of expenses) {
+    totalExpense += expense.amount;
+
+    if (expense.amount > highestExpense.amount) {
+      highestExpense = expense;
     }
+  }
 
-    let totalExpense = 0;
+  let balance = income - totalExpense;
 
-    let highestExpense = expenses[0];
+  let expensePercent = (totalExpense / income) * 100;
 
-    // Loop through array
-    for (let expense of expenses) {
+  let savingPercent = (balance / income) * 100;
 
-        totalExpense += expense.amount;
+  document.getElementById("incomeResult").innerHTML = "$" + income.toFixed(2);
 
-        if (expense.amount > highestExpense.amount) {
+  document.getElementById("expenseResult").innerHTML =
+    "$" + totalExpense.toFixed(2);
 
-            highestExpense = expense;
+  document.getElementById("balanceResult").innerHTML = "$" + balance.toFixed(2);
 
-        }
+  document.getElementById("expensePercent").innerHTML =
+    expensePercent.toFixed(2) + "%";
 
-    }
+  document.getElementById("savingPercent").innerHTML =
+    savingPercent.toFixed(2) + "%";
 
-    let balance = income - totalExpense;
+  document.getElementById("highestExpense").innerHTML =
+    highestExpense.category + " ($" + highestExpense.amount + ")";
 
-    let expensePercent = (totalExpense / income) * 100;
+  document.getElementById("expenseBar").style.width = expensePercent + "%";
 
-    let savingPercent = (balance / income) * 100;
-
-    document.getElementById("incomeResult").innerHTML =
-        "$" + income.toFixed(2);
-
-    document.getElementById("expenseResult").innerHTML =
-        "$" + totalExpense.toFixed(2);
-
-    document.getElementById("balanceResult").innerHTML =
-        "$" + balance.toFixed(2);
-
-    document.getElementById("expensePercent").innerHTML =
-        expensePercent.toFixed(2) + "%";
-
-    document.getElementById("savingPercent").innerHTML =
-        savingPercent.toFixed(2) + "%";
-
-    document.getElementById("highestExpense").innerHTML =
-        highestExpense.category + " ($" + highestExpense.amount + ")";
-
-    document.getElementById("expenseBar").style.width =
-        expensePercent + "%";
-
-    document.getElementById("savingBar").style.width =
-        savingPercent + "%";
-
+  document.getElementById("savingBar").style.width = savingPercent + "%";
 }

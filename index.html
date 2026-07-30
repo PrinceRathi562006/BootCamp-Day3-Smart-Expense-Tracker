@@ -1,139 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Expense Calculator</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Smart Expense Calculator</title>
 
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-</head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    </head>
 
-<body>
+    <body>
 
-<div class="container">
+        <div class="container">
 
-    <h1>💰 Smart Expense Calculator</h1>
+            <h1>💰 Smart Expense Calculator</h1>
 
-    <div class="income-box">
+            <div class="income-box">
 
-        <label>Monthly Income</label>
+                <label>Monthly Income</label>
 
-        <input
-            type="number"
-            id="income"
-            placeholder="Enter Income">
+                <input type="number" id="income" placeholder="Enter Income">
 
-    </div>
+            </div>
 
 
-    <div class="expense-box">
+            <div class="expense-box">
 
-        <h2>Add Expenses</h2>
+                <h2>Add Expenses</h2>
 
-        <div class="expense-inputs">
+                <div class="expense-inputs">
 
-            <input
-                type="text"
-                id="category"
-                placeholder="Expense Category">
+                    <input type="text" id="category" placeholder="Expense Category">
 
-            <input
-                type="number"
-                id="amount"
-                placeholder="Amount">
+                    <input type="number" id="amount" placeholder="Amount">
 
-            <button onclick="addExpense()">Add Expense</button>
+                    <button onclick="addExpense()">Add Expense</button>
 
-        </div>
+                </div>
 
-    </div>
+            </div>
 
 
-    <table>
+            <table>
 
-        <thead>
+                <thead>
 
-            <tr>
+                    <tr>
 
-                <th>Category</th>
-                <th>Amount</th>
+                        <th>Category</th>
+                        <th>Amount</th>
 
-            </tr>
+                    </tr>
 
-        </thead>
+                </thead>
 
-        <tbody id="expenseTable"></tbody>
+                <tbody id="expenseTable"></tbody>
 
-    </table>
+            </table>
 
-    <button class="calculate" onclick="calculateExpense()">
-        Calculate
-    </button>
+            <button class="calculate" onclick="calculateExpense()">
+                Calculate
+            </button>
 
-    <div class="result">
+            <div class="result">
 
-        <div class="card income">
-            <h3>Income</h3>
-            <p id="incomeResult">$0</p>
-        </div>
+                <div class="card income">
+                    <h3>Income</h3>
+                    <p id="incomeResult">$0</p>
+                </div>
 
-        <div class="card expense">
-            <h3>Total Expense</h3>
-            <p id="expenseResult">$0</p>
-        </div>
+                <div class="card expense">
+                    <h3>Total Expense</h3>
+                    <p id="expenseResult">$0</p>
+                </div>
 
-        <div class="card balance">
-            <h3>Remaining Balance</h3>
-            <p id="balanceResult">$0</p>
-        </div>
+                <div class="card balance">
+                    <h3>Remaining Balance</h3>
+                    <p id="balanceResult">$0</p>
+                </div>
 
-        <div class="card save">
-            <h3>Savings %</h3>
-            <p id="savingPercent">0%</p>
-        </div>
+                <div class="card save">
+                    <h3>Savings %</h3>
+                    <p id="savingPercent">0%</p>
+                </div>
 
-        <div class="card spend">
-            <h3>Expense %</h3>
-            <p id="expensePercent">0%</p>
-        </div>
+                <div class="card spend">
+                    <h3>Expense %</h3>
+                    <p id="expensePercent">0%</p>
+                </div>
 
-        <div class="card highest">
-            <h3>Highest Expense</h3>
-            <p id="highestExpense">-</p>
-        </div>
+                <div class="card highest">
+                    <h3>Highest Expense</h3>
+                    <p id="highestExpense">-</p>
+                </div>
 
-    </div>
+            </div>
 
-    <div class="progress-section">
+            <div class="progress-section">
 
-        <h3>Expense Percentage</h3>
+                <h3>Expense Percentage</h3>
 
-        <div class="progress">
+                <div class="progress">
 
-            <div id="expenseBar"></div>
+                    <div id="expenseBar"></div>
 
-        </div>
+                </div>
 
-        <h3>Savings Percentage</h3>
+                <h3>Savings Percentage</h3>
 
-        <div class="progress">
+                <div class="progress">
 
-            <div id="savingBar"></div>
+                    <div id="savingBar"></div>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
+        <script src="script.js"></script>
 
-</div>
-
-<script src="script.js"></script>
-
-</body>
+    </body>
 
 </html>
